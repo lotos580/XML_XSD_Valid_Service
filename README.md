@@ -4,7 +4,7 @@
 ./gradlew build docker
 
 4) Запускаем контейнер:
-docker run -p 80:80 -t task/xmlvalid
+docker run -p 80:80 -t app
 
 4) Отправляем POST запрос по ссылке localhost/validate:
 Пример запроса /pics/post.png
