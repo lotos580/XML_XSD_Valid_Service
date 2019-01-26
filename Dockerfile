@@ -1,7 +1,11 @@
-FROM openjdk:8-jdk-alpine
-VOLUME /tmp
-ARG DEPENDENCY=target/dependency
-COPY ${DEPENDENCY}/BOOT-INF/lib /app/lib
-COPY ${DEPENDENCY}/META-INF /app/META-INF
-COPY ${DEPENDENCY}/BOOT-INF/classes /app
-ENTRYPOINT ["java","-cp","app:app/lib/*","com.task.xmlvalid.Application"]
+FROM java:8
+ 
+COPY . /app
+ 
+WORKDIR /app
+ 
+EXPOSE 80
+ 
+RUN ./gradlew build
+ 
+ENTRYPOINT ["java","-jar","./build/libs/gs-spring-boot-docker-0.1.0.jar"]
